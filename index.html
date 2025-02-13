@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine</title>
+
+    <style>
+        body {
+            margin: 0;
+            
+        }
+
+        .hud {
+		display: flex;
+        color: #fff;
+		position: absolute;
+        align-items: center;
+		background: none;
+		border: none;
+		border-radius: 1em;
+		text-align: center;
+		font-family: sans-serif;
+		font-size: 150%;
+		padding: 20px;
+        border: 5px solid #fff;
+        margin: 0;
+        position: absolute;
+        top: 90%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        }
+
+        .hud:hover {
+                cursor: pointer;
+                border: solid 1px gray;
+                background: rgba( 255, 255, 255, 0.5 );
+        }
+    </style>
+</head>
+<body>
+
+    <div class="s">
+        <a href="/inside.html" class="hud">START</a>
+    </div>
+    <!-- https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/RGBELoader.js"></script>
+  <script src="https://unpkg.com/three@0.118.0/examples/js/renderers/CSS3DRenderer.js"></script>
+
+  <script>
+    
+    function addState() {
+                let stateObj = { id: "100" };
+    
+                window.history.pushState(stateObj,
+                    "valentine", "/inside.html");
+            } 
+
+    let model;
+
+    // Scene setup
+
+    const scene = new THREE.Scene();
+    const cam = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0xc26788);
+    document.body.appendChild(renderer.domElement);
+
+
+    
+
+    const controls = new THREE.OrbitControls(cam, renderer.domElement);
+
+    const light = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(light);
+
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight.position.set(5, 10, 7.5);
+    scene.add(directionalLight);
+
+    const hdriLoader = new THREE.RGBELoader();
+    hdriLoader.load("hdri/lonely_road_afternoon_puresky_1k.hdr", function(texture) {
+        texture.mapping = THREE.EquirectangularReflectionMapping;
+        
+        //scene.environment = texture;
+    });
+
+
+    // Load 3D model
+
+    const loader = new THREE.GLTFLoader();
+    loader.load('models/scene.gltf', function(gltf) {
+        model = gltf.scene;
+        model.scale.set(1, 1, 1)
+
+        scene.add(model);
+        renderer.render(scene, cam);
+
+    }, undefined, function(error) {
+        console.error("error");
+    });
+
+
+    cam.position.set(2, 2, 5);
+
+    // Animation
+
+    function animate() {
+        requestAnimationFrame(animate);
+        controls.update();
+
+        if (model) {
+            model.rotation.y += 0.004;
+
+            //cam.lookAt(model.position);
+        }
+
+        renderer.render(scene, cam);
+    }
+
+    animate();
+
+    window.addEventListener("resize", () => {
+        cam.aspect = window.innerWidth / window.innerHeight;
+        cam.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    })
+
+    window.addEventListener("click", () => {
+        addState();
+    })
+
+
+  </script>
+</body>
+</html>

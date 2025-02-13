@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VALENTINE SYSTEM</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #000;
+            color: #c26788;
+            font-family: monospace;
+            min-height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .terminal {
+            background-color: #000;
+            border: 5px solid #c26788;
+            border-radius: 10px;
+            padding: 20px;
+            width: 600px;
+            max-width: 90%;
+            position: relative;
+            box-shadow: 0 0 20px rgba(224, 85, 136, 0.8);
+        }
+
+        .terminal-header {
+            border-bottom: 1px solid #c26788;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .terminal-title {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .terminal-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .terminal-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 1px solid #00ff00;
+        }
+
+        .two {
+            border: 1px solid yellow;
+        }
+
+        .three {
+            border: 1px solid red;
+        }
+
+        .content {
+            min-height: 300px;
+        }
+
+        .question {
+            margin-bottom: 20px;
+            opacity: 1;
+            animation: fadeIn 0.5s forwards;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 15px;
+            background-color: #c26788;
+            animation: blink 1s infinite;
+            margin-left: 5px;
+        }
+
+        .options {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .option {
+            padding: 8px;
+            margin: 5px 0;
+            cursor: pointer;
+            border: 1px solid #c26788;
+            background: transparent;
+            color: #c26788;
+            font-family: monospace;
+            width: 100%;
+            text-align: left;
+            transition: background-color 0.3s;
+        }
+
+        .option:hover {
+            background-color: rgba(0, 255, 0, 0.2);
+        }
+
+        .response {
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .typing {
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 0;
+            animation: typing 2s steps(40, end);
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        .scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(
+                0deg,
+                rgba(0, 255, 0, 0) 0%,
+                rgba(0, 255, 0, 0.03) 50%,
+                rgba(0, 255, 0, 0) 100%
+            );
+            animation: scanning 10s linear infinite;
+        }
+
+        @keyframes scanning {
+            from { transform: translateY(-100%) }
+            to { transform: translateY(100vh) }
+        }
+
+        .terminal-load{
+            animation-name: fadeOut;
+            animation-duration: 1ms;
+            animation-fill-mode: forwards;
+            animation-delay: 10000ms;
+        }
+
+        p {
+            display: block;
+            width: 0px;
+            margin: 0;
+            font-size:1.2rem;
+            color: #c26788;
+            overflow: hidden;
+            font-family: monospace;
+            white-space: nowrap;
+            animation-name: writeText;
+            animation-duration: 1000ms;
+            animation-fill-mode: forwards;
+        }
+
+        h1{
+            text-align: center;
+            vertical-align: auto;
+            opacity: 0;
+            color: #c26788;
+            font-family:sans-serif;
+            animation-name: fadeIn;
+            animation-duration: 1000ms;
+            animation-fill-mode: forwards;
+            animation-delay: 10500ms;
+        }
+
+        .delay1 {
+        animation-delay: 2000ms;
+        }
+
+        .delay2 {
+        animation-delay: 3000ms;
+        }
+
+        .delay3 {
+        animation-delay: 4000ms;
+        }
+
+        .delay4 {
+        animation-delay: 5000ms;
+        }
+
+        .delay5 {
+        animation-delay: 6000ms;
+        }
+
+        .delay6 {
+        animation-delay: 7000ms;
+        }
+
+        .delay7 {
+        animation-delay: 8000ms;
+        }
+        .delay8 {
+        animation-delay: 9000ms;
+        }
+        /* Standard syntax */
+        @keyframes writeText {
+        from {
+            width: 0;
+        }
+        to {
+            width: 300px;
+        }
+        }
+
+        @keyframes fadeOut {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+        }
+
+        @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+        }
+
+        .loader {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        background-color: black;
+        }
+
+        #loaded {
+        height: 2px;
+        width: 0px;
+        background-color: #c26788;
+        animation-name: load;
+        animation-duration: 3000ms;
+        animation-fill-mode: forwards;
+        }
+
+        @keyframes load {
+        0% {
+            width: 0;
+        }
+        50% {
+            width: 70%;
+        }
+        70% {
+            width: 100%;
+        }
+        80% {
+            opacity: 1;
+        }
+        100% {
+            width: 100%;
+            opacity: 0;
+        }
+        }
+
+        #valentine-cat {
+
+            visibility: hidden;
+        }
+
+        footer {
+            
+            position: absolute;
+            bottom: 30px;
+        }
+
+
+
+        #qr {
+            position: absolute;
+            right:-80px;
+            width: 170px;
+            height: 170px;
+            visibility: hidden;
+        }
+
+        #donate {
+        display: flex;
+        color: #fff;
+		position: absolute;
+        align-items: center;
+		background: none;
+		border: none;
+		border-radius: 1em;
+		text-align: center;
+		font-family: sans-serif;
+		font-size: 150%;
+		padding: 20px;
+        border: 5px solid #fff;
+        margin: 0;
+        position: absolute;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        visibility: hidden;
+        
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="loader">
+        <div id="loaded"></div>
+        
+        <span class="terminal-load">
+            <p class="delay1">~$: BOOTING UP</p>
+            <p class="delay2">DONE...</p>
+            <p class="delay3">~$: PREPARING HEART</p>
+            <p class="delay4">DONE...</p>
+            <p class="delay5">~$: CREATING LOVE</p>
+            <p class="delay6">DONE...</p>
+            <p class="delay7">~$: WAITING FOR SHIPMENT</p>
+            <p class="delay8">PROCESSING...</p>
+        </span>
+        <h1>WELCOME</h1>
+    </div>
+      <!-- <h1>WELCOME</h1> -->
+
+    <div class="terminal">
+        
+        <!-- <div class="scanline"></div> -->
+        <div class="terminal-header">
+            <div class="terminal-title">VALENTINE SYSTEM V.1</div>
+            <div class="terminal-buttons">
+                <div class="terminal-button one"></div>
+                <div class="terminal-button two"></div>
+                <div class="terminal-button three"></div>
+            </div>
+        </div>
+        <div class="content">
+            <div id="conversation"></div>
+            <img id ='valentine-cat'src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExc3JlcHp1eW9wbHRsZjd2a3Vyd3dubnBsYzhseXd4d3hwcW9kdGE4NyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/12afltvVzJIesM/giphy.gif" alt="Computer man" style="width:20px;height:20px;">
+        </div>
+    </div>
+
+    <footer id="beer">
+        <h2 id="donate">BEER DONATION</h2>
+        <img id='qr' src="qr.png" alt="qr">
+    </footer>
+    <script src="https://cdn.jsdelivr.net/emojione/2.2.7/lib/js/emojione.min.js"></script>
+
+    
+
+  
+
+
+    <script>
+        const loader = document.getElementsByClassName("loader");
+        setTimeout(function() {
+            console.log("Yes");
+            document.querySelectorAll(".loader").forEach(el => el.remove());
+        }, 13000);
+
+    //     window.onscroll = function() {
+    //     window.scrollTo(0, 0);
+    // }
+
+
+        var please = String.fromCodePoint(0x1F61E);
+        var please2 = String.fromCodePoint(0x1F61F);
+        var please3 = String.fromCodePoint(0x1F625);
+        var angry =String.fromCodePoint(0x1F621);
+        const questions = [
+            {
+                text: "INITIALIZING VALENTINE SYSTEM...",
+                options: ["START"]
+            },
+            {
+                text: "COULD YOU BE MY VALENTINE?",
+                options: ["YES", "NO"]
+            },
+            {
+                text: "COULD YOU BE MY VALENTINE? ",
+                options: ["YES", "YES", "NO"]
+            },            {
+                text: "COULD YOU BE MY VALENTINE? PLEASE " + please,
+                options: ["YES", "YES", "YES", "NO"]
+            },            {
+                text: "COULD YOU BE MY VALENTINE? PLEASEEEE " + please2,
+                options: ["YES", "YES", "YES", "YES","NO"]
+            },            {
+                text: "COULD YOU BE MY VALENTINE? PLEASEEEEEE "+ please3,
+                options: ["YES", "YES", "YES", "YES","YES","NO"]
+            },
+            {
+                text: "COULD YOU BE MY VALENTINEEEE? " + angry + angry + angry,
+                options: ["YES"]
+            },
+
+        ];
+
+        let currentQuestion = 0;
+
+        function removeConversation(element) {
+            const screen = document.getElementById('conversation');
+            screen.innerHTML = '';
+        }
+
+        function addToConversation(element) {
+            document.getElementById('conversation').appendChild(element);
+        }
+
+        function createQuestion(text) {
+            const div = document.createElement('div');
+            div.className = 'question typing';
+            div.innerHTML = `> ${text}<span class="cursor"></span>`;
+            return div;
+        }
+
+        function createOptions(options) {
+            const div = document.createElement('div');
+            div.className = 'options';
+            if (currentQuestion == 0) {
+                div.innerHTML = options.map((option, index) => `
+                <button class="option" onclick="selectOption('${option}')">
+                    ${option}
+                </button>
+            `).join('');
+            } else {
+            div.innerHTML = options.map((option, index) => `
+                <button class="option" onclick="selectOption('${option}')">
+                    ${index + 1}. ${option}
+                </button>
+            `).join('');}
+            setTimeout(() => div.style.display = 'block', 2000);
+            
+            return div;
+        }
+
+        function createResponse(text) {
+            const div = document.createElement('div');
+            div.className = 'response';
+            div.innerHTML = `>>> ${text}`;
+            return div;
+        }
+
+        function selectOption(option) {
+            if (option == 'NO') {
+                const response = createResponse('You picked wrong answer!!! Please try again')
+                addToConversation(response)
+                var delayInMilliseconds = 2000; //1 second
+
+                setTimeout(function() {
+                    removeConversation();
+                //your code to be executed after 1 second
+                }, delayInMilliseconds);
+                
+                
+            } else {
+            const response = createResponse(`SELECTED: ${option}`);
+            addToConversation(response);
+
+                if (option == "YES") {
+                    currentQuestion = 6;
+
+                }
+                else if (option == 'START') {
+                    var delayInMilliseconds = 2000; //1 second
+
+                    setTimeout(function() {
+                        removeConversation();
+                    //your code to be executed after 1 second
+                    }, delayInMilliseconds);
+                }
+            }
+            currentQuestion++;
+
+            if (currentQuestion < questions.length) {
+                setTimeout(askQuestion, 2000);
+  
+
+            } else {
+                setTimeout(removeConversation, 2000)
+                setTimeout(() => {
+                    var emoji = String.fromCodePoint(0x1F60D)
+  
+                    const finalResponse = createResponse("LOVE YOUUUUUUU."+ emoji+emoji+emoji+emoji+emoji);
+                    addToConversation(finalResponse);
+                }, 3000);
+                
+                setTimeout(() => {
+                    document.getElementById('valentine-cat').style.width = '300px';
+                    document.getElementById('valentine-cat').style.height = '300px';
+                    document.getElementById('valentine-cat').style.marginTop = '20px';
+                    document.getElementById('valentine-cat').style.visibility = 'visible';
+                    document.getElementById('donate').style.visibility = 'visible';
+                    document.getElementById("donate").onclick = showDonate;
+                }, 5000);
+            }
+        }
+        function showDonate() {
+            document.getElementById('donate').style.visibility = 'hidden';
+            document.getElementById('qr').style.visibility = 'visible';
+        };
+
+        function askQuestion() {
+            const question = questions[currentQuestion];
+            const questionElement = createQuestion(question.text);
+            const optionsElement = createOptions(question.options);
+            
+            addToConversation(questionElement);
+            setTimeout(() => addToConversation(optionsElement), 2000);
+
+            
+        }
+
+        // Start the survey
+        setTimeout(() => {
+            askQuestion();
+        }, 14000);
+        
+    </script>
+</body>
+</html>

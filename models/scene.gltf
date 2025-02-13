@@ -1,0 +1,339 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 11286,
+      "max": [
+        51.124549865722656,
+        55.83617401123047,
+        22.726974487304688
+      ],
+      "min": [
+        -35.6396484375,
+        -20.05704116821289,
+        -0.30488836765289307
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 135432,
+      "componentType": 5126,
+      "count": 11286,
+      "max": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "min": [
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 11286,
+      "max": [
+        0.9805886745452881,
+        0.9773291349411011
+      ],
+      "min": [
+        0.018674243241548538,
+        0.00183829665184021
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 47601,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 270864,
+      "componentType": 5126,
+      "count": 209,
+      "max": [
+        14.758821487426758,
+        13.881300926208496,
+        21.123878479003906
+      ],
+      "min": [
+        -6.975769519805908,
+        10.242891311645508,
+        2.7191927433013916
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 273372,
+      "componentType": 5126,
+      "count": 209,
+      "max": [
+        0.8639122843742371,
+        1.0,
+        0.8898542523384094
+      ],
+      "min": [
+        -0.8639104962348938,
+        0.455942839384079,
+        -0.8898534178733826
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 90288,
+      "componentType": 5126,
+      "count": 209,
+      "max": [
+        0.290196031332016,
+        0.2115122377872467
+      ],
+      "min": [
+        0.049596138298511505,
+        0.007742084562778473
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 190404,
+      "componentType": 5125,
+      "count": 576,
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "PaulinDelgadillo (https://sketchfab.com/PaulinDELRawr)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/valentines-day-e50b35b6763042fba62cb727e9c8b815",
+      "title": "Valentine's Day"
+    },
+    "generator": "Sketchfab-12.68.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 192708,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 91960,
+      "byteOffset": 192708,
+      "byteStride": 8,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 275880,
+      "byteOffset": 284668,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 560548,
+      "uri": "scene.bin"
+    }
+  ],
+  "images": [
+    {
+      "uri": "textures/Material_25_baseColor.png"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "name": "Material_25",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicFactor": 0.0,
+        "roughnessFactor": 0.6
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "MSH_Consola_Material #25_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TEXCOORD_0": 2
+          },
+          "indices": 3,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "MSH_Pantalla_Material #25_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 5,
+            "POSITION": 4,
+            "TEXCOORD_0": 6
+          },
+          "indices": 7,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.220446049250313e-16,
+        -1.0,
+        0.0,
+        0.0,
+        1.0,
+        2.220446049250313e-16,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Sketchfab_model"
+    },
+    {
+      "children": [
+        2
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "c04fa727a37f455ebaf7da5f9ff8dc0d.fbx"
+    },
+    {
+      "children": [
+        3,
+        5
+      ],
+      "name": "RootNode"
+    },
+    {
+      "children": [
+        4
+      ],
+      "matrix": [
+        0.05194045975804329,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.153309886659921e-17,
+        -0.05194045975804329,
+        0.0,
+        0.0,
+        0.05194045975804329,
+        1.153309886659921e-17,
+        0.0,
+        -0.7864428162574768,
+        0.01065361313521862,
+        1.3402842283248901,
+        1.0
+      ],
+      "name": "MSH_Consola"
+    },
+    {
+      "mesh": 0,
+      "name": "MSH_Consola_Material #25_0"
+    },
+    {
+      "children": [
+        6
+      ],
+      "matrix": [
+        0.05194045975804329,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.153309886659921e-17,
+        -0.05194045975804329,
+        0.0,
+        0.0,
+        0.05194045975804329,
+        1.153309886659921e-17,
+        0.0,
+        -0.7864428162574768,
+        0.01065361313521862,
+        1.3402842283248901,
+        1.0
+      ],
+      "name": "MSH_Pantalla"
+    },
+    {
+      "mesh": 1,
+      "name": "MSH_Pantalla_Material #25_0"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Sketchfab_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    }
+  ]
+}
